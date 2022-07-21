@@ -179,6 +179,24 @@ SEXP do_simplify(const ColumnInfoArray* column_info, SEXP x) {
     }
   }
 
+  // Make data.frame
+  setAttrib(out, R_ClassSymbol, ScalarString(mkChar("data.frame")));
+
+  // Set colnames
+  SEXP colnames = PROTECT(allocVector(STRSXP, ncol));
+  for (R_xlen_t i = 0; i < ncol; i ++) {
+    SET_STRING_ELT(colnames, i, mkChar(column_info->info[i].name));
+  }
+  setAttrib(out, R_NamesSymbol, colnames);
+  UNPROTECT(1);
+
+  SEXP rownames = PROTECT(allocVector(INTSXP, nrow));
+  int* raw_rownames = INTEGER(rownames);
+  for (R_xlen_t i = 0; i < nrow; i ++) {
+   raw_rownames[i] = i + 1;
+  }
+  setAttrib(out, R_RowNamesSymbol, rownames);
+  UNPROTECT(1);
 
   UNPROTECT(1);
   return out;
