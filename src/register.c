@@ -17,6 +17,7 @@ extern SEXP C_is_scalarlist(SEXP);
 extern SEXP C_null_to_na(SEXP);
 extern SEXP C_row_collapse_array(SEXP, SEXP);
 extern SEXP C_row_collapse_object(SEXP, SEXP, SEXP);
+extern SEXP C_simplify(SEXP);
 extern SEXP C_transpose_list(SEXP, SEXP);
 extern SEXP R_base64_decode(SEXP);
 extern SEXP R_base64_encode(SEXP);
@@ -40,6 +41,7 @@ static const R_CallMethodDef CallEntries[] = {
   {"C_null_to_na",                  (DL_FUNC) &C_null_to_na,                  1},
   {"C_row_collapse_array",          (DL_FUNC) &C_row_collapse_array,          2},
   {"C_row_collapse_object",         (DL_FUNC) &C_row_collapse_object,         3},
+  {"C_simplify",                    (DL_FUNC) &C_simplify,                    1},
   {"C_transpose_list",              (DL_FUNC) &C_transpose_list,              2},
   {"R_base64_decode",               (DL_FUNC) &R_base64_decode,               1},
   {"R_base64_encode",               (DL_FUNC) &R_base64_encode,               1},
